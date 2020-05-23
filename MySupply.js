@@ -45,19 +45,22 @@ class MySupply extends MyUnitCubeQuad {
     }
 
     display() {
-        if(this.state == SupplyStates.LANDED){
-            this.scene.pushMatrix();
-            this.scene.translate(...this.position);
-            this.scene.rotate(this.angle, 0, 1, 0);
-            this.scene.translate(0,this.offset,0);
-            super.displaySpread();
-            this.scene.popMatrix();
-        } else if (this.state != SupplyStates.INACTIVE) {
-            this.scene.pushMatrix();
-            this.scene.translate(...this.position);
-            this.scene.rotate(this.angle, 0, 1, 0);
-            super.display();
-            this.scene.popMatrix();
+        switch (this.state) {
+            case SupplyStates.LANDED:
+                this.scene.pushMatrix();
+                this.scene.translate(...this.position);
+                this.scene.rotate(this.angle, 0, 1, 0);
+                this.scene.translate(0,this.offset,0);
+                super.displaySpread();
+                this.scene.popMatrix();
+                break;
+            case SupplyStates.FALLING:
+                this.scene.pushMatrix();
+                this.scene.translate(...this.position);
+                this.scene.rotate(this.angle, 0, 1, 0);
+                super.display();
+                this.scene.popMatrix();
+                break;
         }
     }
     
@@ -69,7 +72,6 @@ class MySupply extends MyUnitCubeQuad {
             if (this.position[1] == finalHeight) {
                 this.state = SupplyStates.LANDED;
                 super.setTextures(...this.landedTexture);
-                this.scene.nSuppliesDelivered++;
             }
         }
     }

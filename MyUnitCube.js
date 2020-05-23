@@ -10,7 +10,7 @@ class MyUnitCube extends CGFobject {
         this.initBuffers();
 	}
     
-    // Fazer rotate de 90º para dar fix ao "front"
+    // TODO: Fazer rotate de 90º para dar fix ao "front"
     
 	initBuffers() {
 
@@ -106,6 +106,13 @@ class MyUnitCube extends CGFobject {
 		this.initGLBuffers();
     }
     
+    display() {
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI / 2, 0, 1, 0);
+        super.display();
+        this.scene.popMatrix();
+    }
+
     updateBuffers() {
 
     }
