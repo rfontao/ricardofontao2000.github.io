@@ -15,27 +15,31 @@ class MyVehicle extends CGFobject {
         this.doublePlaneLow = new MyDoubleSidedPlane(this.scene, 1, 2);
 
         this.hullAppearance = new CGFappearance(this.scene);
+        this.hullAppearance.setAmbient(1, 1, 1, 1);
         this.hullAppearance.loadTexture("images/zepellin_balloon.png");
 
-        this.testAppearance = new CGFappearance(this.scene);
-        this.testAppearance.loadTexture("images/testMap.jpg");
-
         this.rudderAppearance = new CGFappearance(this.scene);
+        this.rudderAppearance.setAmbient(1, 1, 1, 1);
         this.rudderAppearance.loadTexture("images/rudder.png");
 
         this.mainGondolaAppearance = new CGFappearance(this.scene);
+        this.mainGondolaAppearance.setAmbient(1, 1, 1, 1);
         this.mainGondolaAppearance.loadTexture("images/gondola_main.png");
 
         this.topsGondolaAppearance = new CGFappearance(this.scene);
+        this.topsGondolaAppearance.setAmbient(1, 1, 1, 1);
         this.topsGondolaAppearance.loadTexture("images/gondola_tops.png");
 
         this.rotorAppearance = new CGFappearance(this.scene);
+        this.rotorAppearance.setAmbient(1, 1, 1, 1);
         this.rotorAppearance.loadTexture("images/rotor.png");
 
         this.rotorBladeAppearance = new CGFappearance(this.scene);
+        this.rotorBladeAppearance.setAmbient(1, 1, 1, 1);
         this.rotorBladeAppearance.loadTexture("images/roto_blade.png");
 
         this.flagAppearance = new CGFappearance(this.scene);
+        this.flagAppearance.setAmbient(1, 1, 1, 1);
         this.flagAppearance.loadTexture("images/bioshock_columbia_flag.jpg");
 
         this.phase = 0.0;
@@ -323,7 +327,6 @@ class MyVehicle extends CGFobject {
     displayDeck(){
         this.scene.pushMatrix();
         this.scene.translate(0, -0.75, 0);
-        this.testAppearance.apply();
         this.displayGondola();
         this.displayPropellers();
 
