@@ -128,17 +128,28 @@ class MyVehicle extends CGFobject {
             this.speed[0] += this.acceleration;
             this.speed[0] = Math.max(0, this.speed[0]);
 
-            this.position[0] += this.scene.speedFactor * this.speed[0] * Math.sin(this.curAngle);
-            this.position[2] += this.scene.speedFactor * this.speed[0] * Math.cos(this.curAngle);
-
+            if (this.autoPilotEnabled) {
+                this.position[0] += this.speed[0] * Math.sin(this.curAngle);
+                this.position[2] += this.speed[0] * Math.cos(this.curAngle);
+            }
+            else {
+                this.position[0] += this.scene.speedFactor * this.speed[0] * Math.sin(this.curAngle);
+                this.position[2] += this.scene.speedFactor * this.speed[0] * Math.cos(this.curAngle);
+            }
             this.phase += 2 * this.speed[0];
         }
         else {
             this.speed[0] += this.acceleration * Math.sin(this.curAngle);
             this.speed[2] += this.acceleration * Math.cos(this.curAngle);
 
-            this.position[0] += this.speed[0] * this.scene.speedFactor;
-            this.position[2] += this.speed[2] * this.scene.speedFactor;
+            if (this.autoPilotEnabled) {
+                this.position[0] += this.speed[0];
+                this.position[2] += this.speed[2];
+            }
+            else {
+                this.position[0] += this.speed[0] * this.scene.speedFactor;
+                this.position[2] += this.speed[2] * this.scene.speedFactor;
+            }
 
             this.phase += 2 * Math.sqrt(this.speed[0]**2 + this.speed[2]**2);
 
